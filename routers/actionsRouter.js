@@ -30,15 +30,15 @@ router.get("/:id", validateId, (req, res) => {
     });
 });
 
-router.post("/:id", validateId, validateAction, (req, res) => {
-  const id = req.params.id;
-  const newAction = {
-    project_id: id,
-    description: req.body.description,
-    notes: req.body.notes,
-  };
+router.post("/", validateAction, (req, res) => {
+  //   const id = req.params.id;
+  //   const newAction = {
+  //     project_id: id,
+  //     description: req.body.description,
+  //     notes: req.body.notes,
+  //   };
   actiondb
-    .insert(newAction)
+    .insert(req.body)
     .then((response) => {
       res.status(200).json({ message: "Succesfully posted" });
     })
